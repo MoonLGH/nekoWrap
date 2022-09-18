@@ -1,0 +1,63 @@
+{
+  "version": "1.0.3",
+  "name": "nekoWrap",
+  "repository": "MoonLGH/nekoWrap",
+  "description": "Simple command handler",
+  "unpkg": "dist/index.min.js",
+  "module": "dist/index.mjs",
+  "main": "dist/index.js",
+  "types": "types/index.d.ts",
+  "license": "MIT",
+  "author": {
+    "name": "TODO_YOUR_NAME",
+    "email": "YOUR_EMAIL@TODO.com",
+    "url": "https://TODO_WEBSITE.com"
+  },
+  "files": [
+    "dist",
+    "types"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "engines": {
+    "node": ">= 14"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "prepublishOnly": "npm run build",
+    "test": "uvu -r ts-node/register test",
+    "lint": "eslint src",
+    "lint-fix": "eslint src --fix"
+  },
+  "keywords": [
+    "Nhentai"
+  ],
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "8.1.0",
+    "@types/estree": "^0.0.50",
+    "@types/qs": "^6.9.7",
+    "@typescript-eslint/eslint-plugin": "^5.7.0",
+    "@typescript-eslint/parser": "^5.7.0",
+    "eslint": "^8.4.1",
+    "eslint-config-google": "^0.14.0",
+    "rollup": "2.21.0",
+    "rollup-plugin-terser": "6.1.0",
+    "rollup-plugin-typescript2": "0.27.1",
+    "ts-node": "8.10.2",
+    "typescript": "^4.7.4",
+    "uvu": "0.0.19"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cheerio": "^1.0.0-rc.12",
+    "puppeteer": "^15.3.0",
+    "puppeteer-extra": "^3.3.0",
+    "puppeteer-extra-plugin-stealth": "^2.10.1",
+    "qs": "^6.11.0"
+  }
+}
