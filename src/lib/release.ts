@@ -11,7 +11,13 @@ export async function Release(browser:Browser,page:number=1) {
     let thumb = $(el).find("div.limitnjg > img").first().attr("src")!
     let type = $(el).find("h2 > a").first().attr("href")!.includes("/hentai/") ? "hentai" : "episode"
     let title = $(el).find("h2 > a").first().text()!
-    arr.push({type,url,thumb,title})
+    let id = ""
+    if(type === "hentai"){
+      id = url.split("/hentai/")[1]
+    } else {
+      id = url.split("/")[1]
+    }
+    arr.push({type,url,thumb,title,id})
   })
   return arr
 }
@@ -20,5 +26,6 @@ export interface AnimeShort {
   type:string,
   url:string,
   thumb:string,
-  title:string
+  title:string,
+  id:string,
 }

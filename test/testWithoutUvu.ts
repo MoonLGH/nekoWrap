@@ -8,7 +8,9 @@ puppeteer.use(StealthPlugin());
 (async ()=>{
   const client = new Client(puppeteer);
   await client.start();
-  console.log(await client.hentai(100));
+  let res = await client.hentai(1)
+  console.log(res)
+  console.log(await client.fetch(res[0].id));
   // console.log(await client.release());
   // console.log(await client.search("shishunki"));
   //   await client.getRelated("177013");

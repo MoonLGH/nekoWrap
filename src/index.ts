@@ -3,6 +3,7 @@ import {PuppeteerExtra} from "puppeteer-extra";
 import { Release } from "./lib/release";
 import { hentai } from "./lib/hentai";
 import { search } from "./lib/search";
+import { fetch } from "./lib/fetchHentai";
 export class Client {
   pup: PuppeteerExtra;
   pupBrowser?: Browser;
@@ -32,6 +33,14 @@ export class Client {
       throw Error("Your keyword need to be >3 length")
     }
     return search(this.pupBrowser!,keyword,page);
+  }
+  
+  async fetch(id:string){
+    this.checkInitialize();
+    if(id.length < 3){
+      throw Error("Your id need to be >3 length")
+    }
+    return fetch(this.pupBrowser!,id)
   }
 
   async close() {
