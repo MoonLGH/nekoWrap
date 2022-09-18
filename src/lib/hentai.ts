@@ -2,8 +2,8 @@ import {Browser} from "puppeteer";
 import {baseUrl, endpoint} from "../utils/constants";
 import { bypass } from "../utils/BypassCF";
 import { load } from "cheerio";
-export async function Release(browser:Browser,page:number=1) {
-  const data = await bypass((await browser.newPage()),baseUrl+endpoint.release.replace("$PAGE",`${page}`))
+export async function hentai(browser:Browser,page:number=1) {
+  const data = await bypass((await browser.newPage()),baseUrl+endpoint.hentai.replace("$PAGE",`${page}`))
   const $ = load(data.responseBody);
   let arr:AnimeShort[] = []
   $("#content > div.postsbody > div.result > ul > li > div").each((i,el)=>{

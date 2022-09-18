@@ -1,5 +1,7 @@
 export const baseUrl = "https://nekopoi.care";
 
 export const endpoint = {
-  hentai: "/category/hentai/page/$PAGE",
+  release: "/category/hentai/page/$PAGE",
+  search: "/search/$KEYWORD/page/$PAGE",
+  hentai: "/hentai/page/$PAGE"
 };
