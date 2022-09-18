@@ -4,6 +4,9 @@ import { Release } from "./lib/release";
 import { hentai } from "./lib/hentai";
 import { search } from "./lib/search";
 import { fetch } from "./lib/fetchHentai";
+import { fetchEps } from "./lib/fetchEpisode";
+import { bypassOuo } from "./utils/bypassOuo";
+import { bypassMirrored } from "./utils/bypassMirror";
 export class Client {
   pup: PuppeteerExtra;
   pupBrowser?: Browser;
@@ -35,13 +38,38 @@ export class Client {
     return search(this.pupBrowser!,keyword,page);
   }
   
-  async fetch(id:string){
+  async fetchHentai(id:string){
     this.checkInitialize();
     if(id.length < 3){
       throw Error("Your id need to be >3 length")
     }
     return fetch(this.pupBrowser!,id)
   }
+
+  async Ouo(url:string){
+    this.checkInitialize();
+    if(url.length < 3){
+      throw Error("Your url  need to be >3 length")
+    }
+    return bypassOuo((await this.pupBrowser!.newPage()),url)
+  }
+
+  async Mirror(url:string){
+    this.checkInitialize();
+    if(url.length < 3){
+      throw Error("Your url need to be >3 length")
+    }
+    return bypassMirrored((await this.pupBrowser!.newPage()),url)
+  }
+
+  async fetchEpisode(id:string){
+    this.checkInitialize();
+    if(id.length < 3){
+      throw Error("Your id need to be >3 length")
+    }
+    return fetchEps(this.pupBrowser!,id)
+  }
+
 
   async close() {
     this.checkInitialize();
