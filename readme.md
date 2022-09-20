@@ -1,12 +1,12 @@
-# Nhentai Parser
+# Nekopoi Wrapper
 
-Note : This project is only recreation based of [nana-api](https://github.com/nikkozu/nana-api) using puppeteer
+Note : This project is based
 
 
 ## Install
 
 ```
-npm install nhentparser puppeteer puppeteer-extra puppeteer-extra-plugin-stealth
+npm install nekowrap puppeteer puppeteer-extra puppeteer-extra-plugin-stealth
 ```
 
 ## Example
@@ -17,12 +17,15 @@ const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 puppeteer.use(StealthPlugin());
 
-const {Client} = require("nhentparser");
+const { Client } = require("nekowrap");
 const client = new Client(puppeteer);
 
-// Get gallery from book ID or book link
-client.g("14045").then(console.log);
-client.g("https://nhentai.net/g/4501").then(console.log);
+// Get Latest Release From nekopoi 
+await client.start();
+let res = await client.release()
+console.log(res)
+client.close();
+
 ```
 
 TS/ESM
@@ -31,79 +34,132 @@ import puppeteer from "puppeteer-extra";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
 puppeteer.use(StealthPlugin());
 
-import {Client} from "nhentparser"
+import { Client } from "nekowrap"
 const client = new Client(puppeteer);
 
-// Get gallery from book ID or book link
-client.g("14045").then(console.log);
-client.g("https://nhentai.net/g/4501").then(console.log);
+// Get Latest Release From nekopoi 
+await client.start();
+let res = await client.release()
+console.log(res)
+client.close(); 
 ```
-
-## Results
-
-Full Object interface could be open in [utils/Interface](https://github.com/MoonLGH/nHentParser/blob/main/src/utils/interfaces.ts)
-
-Where "Book" is the Book Interface from g,getBook,random method
-
-and "List" is List interface from tag,search,character,artist,related,popular method
 
 ## API List
 
-The ID of a doujin can be found can be found at after the `/g/` in the search bar or a URL.
+```js 
+// Import the package
 
-`https://nhentai.net/g/248121` in this case `248121` is the ID.
 
-**Client.g(ID | Link)**
+const puppeteer = require("puppeteer-extra");
+const StealthPlugin = require("puppeteer-extra-plugin-stealth");
+puppeteer.use(StealthPlugin());
 
-- `ID | Link` can both `string` or `number`
+const { Client } = require("nekowrap");
+const client = new Client(puppeteer);
 
-Get book API from book ID of book Link  
-return a `Book Object`
 
-**Client.random()**  
-Get random book API  
-return a `Book Object`
+// Get latest update
+async function release() {
+    const res = await client.release()
+    console.log(res)
+}
 
-**Client.getRelated(ID | Link)**
-- alias `related` 
+// Get Hentai Page
+async function hentai() {
+    const res = await client.hentai()
+    console.log(res)
 
-- `ID | Link` can both `string` or `number`
+    /*
+    Expected output:
+    {
+    "result": [
+        {
+            "type": string,
+            "url": string,
+            "thumb": string,
+            "title": string,
+            "id": string
+        }
+    ]
+    }
+    */
+}
 
-Get realated book API from book ID or book link  
-return a `List Object`
+async function search() {
+    const res = await client.search("Shoujo ramune")
+    console.log(res)
 
-**Client.homepage([page])**
-- `page` is `optional` and must be a `number`
+    /*
+    Expected output:
+    {
+    "result": [
+        {
+            "type": string,
+            "url": string,
+            "thumb": string,
+            "title": string,
+            "id": string
+        }
+    ]
+    }
+    */
 
-Get book list from nHentai homepage  
-return a `List Object`
+}
 
-**Client.getPopularNow()**  
-- alias `popular` 
+// Fetch Hentai From ID
+async function fetchHentai() {
+    const res = await client.fetchHentai("shoujo-ramune/")
+    console.log(res)
 
-Get book list from popular section  
-return a `List Object`
+    /*
+    Expected output:
+    {
+    "result": [
+        {
+            japanese: string;
+            jenis: string;
+            episode: string;
+            status: string;
+            tayang: string;
+            produser: string;
+            genres: string;
+            durasi: string;
+            skor: string;
+            episodeList: eps[]
+        }
+    ]
+    }
+    */
+}
 
-**Client.search(keyword [, page, popular ])**
+// Bypass Ouo
+async function Ouo() {
+    const res = await client.Ouo("https://ouo.io/C4s5Gdg")
+    console.log(res)
+    /*
+    Expected output: string,
+    */
+}
 
-- `page` must be a `number`
-- `popular` can be a `boolean` or `string`, if set `true` will get the `popular` list
-available `string` parameter is: `today`, `all`, and `week`
+// Mirror Bypass
+async function Mirror() {
+    const res = await client.Mirror("https://www.mirrored.to/files/4YPX8MZW/[NekoPoi]_Isekai_Harem_Monogatari_-_[720P][nekopoi.care].mp4_links")
+    console.log(res)
+    /*
+    Expected output:
+    [
+        {
+            host:string,
+            url:string,
+            status:string,
+        }
+    ]
+    */
+}
 
-Get search list from keyword provided
-return a `List Object`
+// Close Puppeter
+async function close(){
+    await client.close()
+}
 
-**Client.tag(keyword [, page, popular ])**  
-Same as `Client.search()`
-
-**Client.artist(keyword [, page, popular ])**  
-Same as `Client.search()`
-
-**Client.character(keyword [, page, popular ])**  
-Same as `Client.search()`
-
-**Client.parody(keyword [, page, popular ])**  
-Same as `Client.search()`
-
-**Client.group(keyword [, page, popular ])**  
-Same as `Client.search()`
+```

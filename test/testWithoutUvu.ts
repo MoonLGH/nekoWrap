@@ -8,8 +8,8 @@ puppeteer.use(StealthPlugin());
 (async ()=>{
   const client = new Client(puppeteer);
   await client.start();
-  let res = await client.hentai(1)
-  let hentaiFull = await client.fetchHentai(res[3].id)
+  let hentaiFull = await client.fetchHentai("isekai-harem-monogatari/")
+  console.log(hentaiFull)
   let eps = (await client.fetchEpisode(hentaiFull.episodeList[0].id))[0].list
   for (let i = 0; i < eps.length; i++) {
     const element = eps[i];
