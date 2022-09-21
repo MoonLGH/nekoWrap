@@ -14,7 +14,7 @@ export async function hentai(browser:Browser,page:number=1) {
     if(type === "hentai"){
       id = url.split("/hentai/")[1]
     } else {
-      id = url.split("/")[1]
+      id = url.split(`${baseUrl}/`)[1]
     }
     let title = $(el).find("h2 > a").first().text()!
     arr.push({type,url,thumb,title,id})

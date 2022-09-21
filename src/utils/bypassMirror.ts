@@ -3,19 +3,18 @@ import { load } from "cheerio";
 import axios from "axios";
 export async function bypassMirrored(page:Page, url:string) {
     let res = await axios.get("https://www.mirrored.to/downlink/"+url.split("/files/")[1].split("/")[0])
-
     let $ = load(res.data)
 
 
     let redirect = $("body > div.container.dl-width > div:nth-child(3) > div > a").attr("href")
-    await page.goto(redirect!, {waitUntil:"networkidle2"})
+    res = await axios.get(redirect!)
 
-    await page.waitForSelector('#result > div.col-sm > table > tbody')
-
-    let new$ = load(await page.$eval('html', element => element.innerHTML))
+    let apiRequest = res.data.split('"GET", "')[1].split('",')[0]
+    res = await axios.get("https://mirrored.to"+apiRequest!)
+    let new$ = load(res.data)
 
     let arr:Mirror[] = []
-    
+
     new$("tr").each((i,el)=>{
         let host = $(el).find("img").first()!.attr("alt")!
         let url = $(el).find("td:nth-child(2) > a").attr("href")!
@@ -31,8 +30,6 @@ export async function bypassMirrored(page:Page, url:string) {
             arr[i].url = newUrl
         }
     }
-
-    await page.close()
     return arr
 }
 
@@ -40,7 +37,7 @@ async function getLink(url:string){
     let res = await axios.get("https://mirrored.to"+url)
 
     let $ = load(res.data)
-    return $("body > div.container.dl-width > div:nth-child(5) > div > div > div > div > code").text()
+    return $("code").text()
 }
 
 export interface Mirror {
