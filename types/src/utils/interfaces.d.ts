@@ -1,10 +1,15 @@
-export interface download {
+export interface Download {
     title: string;
     list: Provider[];
 }
 export interface Provider {
     provider: string;
     link: string;
+}
+export interface Mirror {
+    host: string;
+    url: string;
+    status: string;
 }
 export interface HentaiObject {
     japanese: string;

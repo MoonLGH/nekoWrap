@@ -1,3 +1,3 @@
 import { Browser } from "puppeteer";
-import { download } from "../utils/interfaces";
-export declare function fetchEps(browser: Browser, ID: string): Promise<download[]>;
+import { Download } from "../utils/interfaces";
+export declare function fetchEps(browser: Browser, ID: string): Promise<Download[]>;

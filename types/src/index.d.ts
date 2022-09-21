@@ -6,13 +6,13 @@ export declare class Client {
     opt: PuppeteerLaunchOptions;
     constructor(pups: PuppeteerExtra, options?: PuppeteerLaunchOptions);
     start(): Promise<void>;
-    release(page?: number): Promise<import("./lib/release").AnimeShort[]>;
-    hentai(page?: number): Promise<import("./lib/hentai").AnimeShort[]>;
-    search(keyword: string, page?: number): Promise<import("./lib/search").SearchResult[]>;
-    fetchHentai(id: string): Promise<import("./lib/fetchHentai").HentaiObject>;
+    release(page?: number): Promise<import("./utils/interfaces").AnimeShort[]>;
+    hentai(page?: number): Promise<import("./utils/interfaces").AnimeShort[]>;
+    search(keyword: string, page?: number): Promise<import("./utils/interfaces").AnimeShort[]>;
+    fetchHentai(id: string): Promise<import("./utils/interfaces").HentaiObject>;
     Ouo(url: string): Promise<string | null>;
-    Mirror(url: string): Promise<import("./utils/bypassMirror").Mirror[]>;
-    fetchEpisode(id: string): Promise<import("./lib/fetchEpisode").download[]>;
+    Mirror(url: string): Promise<import("./utils/interfaces").Mirror[]>;
+    fetchEpisode(id: string): Promise<import("./utils/interfaces").Download[]>;
     close(): Promise<void | undefined>;
     private checkInitialize;
 }
