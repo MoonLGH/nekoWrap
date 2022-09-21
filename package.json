@@ -1,6 +1,6 @@
 {
-  "version": "1.0.3",
-  "name": "nekoWrap",
+  "version": "0.0.0",
+  "name": "nekowrap",
   "repository": "MoonLGH/nekoWrap",
   "description": "Simple command handler",
   "unpkg": "dist/index.min.js",

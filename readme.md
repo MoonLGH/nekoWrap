@@ -9,6 +9,7 @@ Real Note : You fr can get ip banned from neko by using this, i'm not responsibl
 
 [] Implement download from zippy (also fix aniyomi for this)
 [] Implement Genres
+[] Add more examples
 
 ## Install
 
