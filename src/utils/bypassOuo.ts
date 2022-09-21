@@ -15,5 +15,6 @@ export async function bypassOuo(page:Page, url:string) {
     await page.waitForFunction('document.querySelector("div.result > ul > li > div").textContent.trim().length > 5');
     let element = await page.$('div.result > ul > li > div')
     let value = await page.evaluate(el => el!.textContent, element)
+    await page.close()
     return value
 }

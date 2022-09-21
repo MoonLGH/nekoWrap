@@ -29,4 +29,3 @@ puppeteer.use(StealthPlugin());
   }
   client.close();
 })();
-
