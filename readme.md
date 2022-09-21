@@ -7,9 +7,9 @@ Real Note : You fr can get ip banned from neko by using this, i'm not responsibl
 
 ## TODO
 
-[] Implement download from zippy (also fix aniyomi for this)
-[] Implement Genres
-[] Add more examples
+[] Implement download from zippy (also fix aniyomi for this) <br>
+[] Implement Genres <br>
+[] Add more examples <br ,>
 
 ## Install
 
@@ -22,7 +22,7 @@ All example can be looked from /Example, its using ts deal with it.
 
 
 ## Interface Refrences
-Interfaces for what each method returns can be founded in src/utils/interfaces.ts
+Interfaces for what each method returns can be founded in [src/utils/interfaces.ts](https://github.com/MoonLGH/nekopoi-Wrapper/blob/main/src/utils/interfaces.ts)
 
 ## Example
 
