@@ -2,6 +2,7 @@ import {Browser} from "puppeteer";
 import {baseUrl, endpoint} from "../utils/constants";
 import { bypass } from "../utils/BypassCF";
 import { load } from "cheerio";
+import { Provider,download } from "../utils/interfaces";
 export async function fetchEps(browser:Browser,ID:string) {
   const data = await bypass((await browser.newPage()),baseUrl+endpoint.episode.replace("$ID",ID))
   const $ = load(data.responseBody);
@@ -19,14 +20,4 @@ export async function fetchEps(browser:Browser,ID:string) {
   })
 
   return arr 
-}
-
-export interface download {
-    title:string,
-    list:Provider[],
-}
-
-export interface Provider {
-    provider:string,
-    link:string,
 }

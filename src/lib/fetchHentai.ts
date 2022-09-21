@@ -2,6 +2,7 @@ import {Browser} from "puppeteer";
 import {baseUrl, endpoint} from "../utils/constants";
 import { bypass } from "../utils/BypassCF";
 import { load } from "cheerio";
+import { HentaiObject } from "../utils/interfaces";
 export async function fetch(browser:Browser,ID:string) {
   const data = await bypass((await browser.newPage()),baseUrl+endpoint.detailPage.replace("$ID",ID))
   const $ = load(data.responseBody);
@@ -28,24 +29,4 @@ export async function fetch(browser:Browser,ID:string) {
     })
   })
   return (obj as HentaiObject)
-}
-
-export interface HentaiObject {
-  japanese: string;
-  jenis: string;
-  episode: string;
-  status: string;
-  tayang: string;
-  produser: string;
-  genres: string;
-  durasi: string;
-  skor: string;
-  episodeList: eps[]
-}
-
-export interface eps {
-    title: string;
-    url: string;
-    date: string;
-    id: string;
 }

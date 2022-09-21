@@ -2,6 +2,7 @@ import {Browser} from "puppeteer";
 import {baseUrl, endpoint} from "../utils/constants";
 import { bypass } from "../utils/BypassCF";
 import { load } from "cheerio";
+import { AnimeShort } from "../utils/interfaces";
 export async function Release(browser:Browser,page:number=1) {
   const data = await bypass((await browser.newPage()),baseUrl+endpoint.release.replace("$PAGE",`${page}`))
   const $ = load(data.responseBody);
@@ -20,12 +21,4 @@ export async function Release(browser:Browser,page:number=1) {
     arr.push({type,url,thumb,title,id})
   })
   return arr
-}
-
-export interface AnimeShort {
-  type:string,
-  url:string,
-  thumb:string,
-  title:string,
-  id:string,
 }
