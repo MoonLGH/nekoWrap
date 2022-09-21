@@ -1,5 +1,5 @@
 {
-  "version": "1.0.3",
+  "version": "1.0.4",
   "name": "nekowrap",
   "repository": "MoonLGH/nekoWrap",
   "description": "Simple command handler",
@@ -35,7 +35,10 @@
     "lint-fix": "eslint src --fix"
   },
   "keywords": [
-    "Nekopoi","Nekopoi Wrapper","nekoWrap","Nekopoi Scrapper"
+    "Nekopoi",
+    "Nekopoi Wrapper",
+    "nekoWrap",
+    "Nekopoi Scrapper"
   ],
   "devDependencies": {
     "@rollup/plugin-node-resolve": "8.1.0",
