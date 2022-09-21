@@ -1,6 +1,7 @@
 import {Page} from "puppeteer";
 import { load } from "cheerio";
 import axios from "axios";
+import { Mirror } from "./interfaces";
 export async function bypassMirrored(page:Page, url:string) {
     let res = await axios.get("https://www.mirrored.to/downlink/"+url.split("/files/")[1].split("/")[0])
     let $ = load(res.data)
@@ -39,10 +40,4 @@ async function getLink(url:string){
 
     let $ = load(res.data)
     return $("code").text()
-}
-
-export interface Mirror {
-    host:string,
-    url:string,
-    status:string,
 }

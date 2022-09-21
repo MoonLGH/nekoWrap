@@ -1,7 +1,14 @@
-# Nekopoi Wrapper
+# NekoWrap
 
-Note : This project is based
+Note : This project is based    
 
+Real Note : You fr can get ip banned from neko by using this, i'm not responsible for that
+
+
+## TODO
+
+[] Implement download from zippy (also fix aniyomi for this)
+[] Implement Genres
 
 ## Install
 
@@ -10,156 +17,98 @@ npm install nekowrap puppeteer puppeteer-extra puppeteer-extra-plugin-stealth
 ```
 
 ## Example
+All example can be looked from /Example, its using ts deal with it.
 
-JS
-```js
+
+## Interface Refrences
+Interfaces for what each method returns can be founded in src/utils/interfaces.ts
+
+## Example
+
+```ts
+// Import the package
+
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 puppeteer.use(StealthPlugin());
 
-const { Client } = require("nekowrap");
-const client = new Client(puppeteer);
+const {Client} = require("nekowrap");
 
-// Get Latest Release From nekopoi 
-await client.start();
-let res = await client.release()
-console.log(res)
-client.close();
+// Or in esm
+import {Client} from "nekowrap";
 
-```
-
-TS/ESM
-```ts
 import puppeteer from "puppeteer-extra";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
 puppeteer.use(StealthPlugin());
 
-import { Client } from "nekowrap"
-const client = new Client(puppeteer);
 
-// Get Latest Release From nekopoi 
-await client.start();
-let res = await client.release()
-console.log(res)
-client.close(); 
+(async ()=>{
+  const client = new Client(puppeteer);
+  await client.start();
+    // Do afterward functiona
+})();
 ```
 
-## API List
-
-```js 
-// Import the package
+## API
 
 
-const puppeteer = require("puppeteer-extra");
-const StealthPlugin = require("puppeteer-extra-plugin-stealth");
-puppeteer.use(StealthPlugin());
+? means optional on parameter <br>
 
-const { Client } = require("nekowrap");
-const client = new Client(puppeteer);
+Default value for optional Pages are 1
 
+```ts
 
 // Get latest update
 async function release() {
-    const res = await client.release()
+    const res = await client.release(Page?)
     console.log(res)
+    // Returns : AnimeShort[]
 }
 
 // Get Hentai Page
 async function hentai() {
-    const res = await client.hentai()
+    const res = await client.hentai(Page?)
     console.log(res)
-
-    /*
-    Expected output:
-    {
-    "result": [
-        {
-            "type": string,
-            "url": string,
-            "thumb": string,
-            "title": string,
-            "id": string
-        }
-    ]
-    }
-    */
+    // Returns : AnimeShort[]
 }
 
 async function search() {
-    const res = await client.search("Shoujo ramune")
+    const res = await client.search("Isekai harem monogatari",Page?)
     console.log(res)
-
-    /*
-    Expected output:
-    {
-    "result": [
-        {
-            "type": string,
-            "url": string,
-            "thumb": string,
-            "title": string,
-            "id": string
-        }
-    ]
-    }
-    */
-
+    // Returns : AnimeShort[]
 }
 
 // Fetch Hentai From ID
 async function fetchHentai() {
-    const res = await client.fetchHentai("shoujo-ramune/")
+    const res = await client.fetchHentai("isekai-harem-monogatari/",Page?)
     console.log(res)
+    // Returns : HentaiObject
+}
 
-    /*
-    Expected output:
-    {
-    "result": [
-        {
-            japanese: string;
-            jenis: string;
-            episode: string;
-            status: string;
-            tayang: string;
-            produser: string;
-            genres: string;
-            durasi: string;
-            skor: string;
-            episodeList: eps[]
-        }
-    ]
-    }
-    */
+async function fetchEpisode() {
+    let eps = await client.fetchEpisode("isekai-harem-monogatari-episode-2-subtitle-indonesia/")
+    console.log(res)
+    // Returns : Download
 }
 
 // Bypass Ouo
 async function Ouo() {
     const res = await client.Ouo("https://ouo.io/C4s5Gdg")
     console.log(res)
-    /*
-    Expected output: string,
-    */
+    // Expected output : String
 }
 
 // Mirror Bypass
 async function Mirror() {
-    const res = await client.Mirror("https://www.mirrored.to/files/4YPX8MZW/[NekoPoi]_Isekai_Harem_Monogatari_-_[720P][nekopoi.care].mp4_links")
+    const res = await client.Mirror("https://www.mirrored.to/files/4YPX8MZW/[NekoPoi]_Isekai_Harem_Monogatari_-_01_[720P][nekopoi.care].mp4_links")
     console.log(res)
-    /*
-    Expected output:
-    [
-        {
-            host:string,
-            url:string,
-            status:string,
-        }
-    ]
-    */
+    // Returns : Mirror[]
 }
 
 // Close Puppeter
 async function close(){
     await client.close()
+    // Expected : puppeteer.close() or process.exit() 
 }
 
 ```

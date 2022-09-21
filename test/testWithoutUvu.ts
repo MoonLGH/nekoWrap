@@ -9,7 +9,7 @@ puppeteer.use(StealthPlugin());
 (async ()=>{
   const client = new Client(puppeteer);
   await client.start();
-  let res = await client.search("shoujo ramune")
+  let res = await client.search("Isekai Harem Monogatari")
   console.log(res)
   for (let i = 0; i < res.length; i++) {
     const element = res[i];

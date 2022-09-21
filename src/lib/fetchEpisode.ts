@@ -2,12 +2,12 @@ import {Browser} from "puppeteer";
 import {baseUrl, endpoint} from "../utils/constants";
 import { bypass } from "../utils/BypassCF";
 import { load } from "cheerio";
-import { Provider,download } from "../utils/interfaces";
+import { Provider,Download } from "../utils/interfaces";
 export async function fetchEps(browser:Browser,ID:string) {
   const data = await bypass((await browser.newPage()),baseUrl+endpoint.episode.replace("$ID",ID))
   const $ = load(data.responseBody);
 
-  let arr:download[] = []
+  let arr:Download [] = []
   $("#content > div.postsbody > div > div.arealinker > div.boxdownload > div").each((i,el)=>{
     let title = $(el).find(".name").text()
     let list:Provider[] = []
