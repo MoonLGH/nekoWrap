@@ -7,6 +7,7 @@ Real Note : You fr can get ip banned from neko by using this, i'm not responsibl
 
 ## TODO
 
+[] make seperate of zippy utiis so if zs scraper broke, we dont need patches
 [] Implement Genres <br>
 [] Add more examples <br ,>
 
