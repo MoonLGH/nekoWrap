@@ -7,7 +7,6 @@ Real Note : You fr can get ip banned from neko by using this, i'm not responsibl
 
 ## TODO
 
-[] Implement download from zippy (also fix aniyomi for this) <br>
 [] Implement Genres <br>
 [] Add more examples <br ,>
 

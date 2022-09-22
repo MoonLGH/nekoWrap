@@ -4,6 +4,10 @@ export interface Download {
     list:Provider[],
 }
 
+export interface DownloadOption {
+    fileName:string
+}
+
 export interface Provider {
     provider:string,
     link:string,

@@ -21,8 +21,18 @@ puppeteer.use(StealthPlugin());
         const element = eps[i];
         if(element.provider.includes("ouo")){
           let url = await client.Ouo(element.link)
-          console.log(url)
-          console.log(await client.Mirror(url!))
+          const downloads = await client.Mirror(url!)
+          console.log(downloads)
+          let zs = downloads.find(ar => ar.host.toLowerCase().includes("zippy"))?.url
+          if(!zs) return
+          let {link,name} = await client.parseZippy(zs!)
+
+          const data = await client.downloadZippy(link,{fileName:name})
+          // data.on("data",(chunk:Buffer)=>{
+          // })
+          data.on("end",()=>{
+            console.log("end")
+          })
         }
       }
     }
