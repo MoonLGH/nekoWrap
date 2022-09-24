@@ -106,6 +106,27 @@ async function Mirror() {
     // Returns : Mirror[]
 }
 
+// ZippyShare Bypass
+async function parseZippy(){
+    let {link,name} = await client.parseZippy("https://www65.zippyshare.com/v/BLUflQh4/file.html")
+
+    console.log(link)
+    // Expected output : String
+
+    // Get Name File
+    console.log(name)
+
+    // Expected output : String
+}
+
+// Download Zippyshare
+async function downloadZippy(){
+    // Combine With parseZippy
+    const res = await client.downloadZippy(link, { fileName: name })
+    // Expected output : mp4
+}
+
+
 // Close Puppeter
 async function close(){
     await client.close()
