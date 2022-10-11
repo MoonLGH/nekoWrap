@@ -13,7 +13,7 @@ export class Client {
   pup: PuppeteerExtra;
   pupBrowser?: Browser;
   opt: PuppeteerLaunchOptions;
-  constructor(pups:PuppeteerExtra, options:PuppeteerLaunchOptions={headless: true}) {
+  constructor(pups:PuppeteerExtra, options:PuppeteerLaunchOptions={headless: true, args: ['--no-sandbox']}) {
     this.pup = pups;
     this.opt = options;
   }
