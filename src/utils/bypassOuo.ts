@@ -3,8 +3,8 @@ import { Yuumari } from "./constants";
 
 export async function bypassOuo(page:Page, url:string) {
     await page.goto(Yuumari, {waitUntil: "networkidle2"});
-    await page.waitForSelector('#main > div.bypass-container.svelte-16iy02h > div.content-main.svelte-16iy02h > div:nth-child(1) > div > div.src-box.svelte-16iy02h > textarea')
-    await page.focus('#main > div.bypass-container.svelte-16iy02h > div.content-main.svelte-16iy02h > div:nth-child(1) > div > div.src-box.svelte-16iy02h > textarea')
+    await page.waitForSelector('#main > div.bypass-container.svelte-1emk765 > div.content-main.svelte-1emk765 > div:nth-child(1) > div > div.src-box.svelte-1emk765 > textarea')
+    await page.focus('#main > div.bypass-container.svelte-1emk765 > div.content-main.svelte-1emk765 > div:nth-child(1) > div > div.src-box.svelte-1emk765 > textarea')
     await page.keyboard.type(url)
 
     await page.waitForXPath("/html/body/main/div[1]/div[2]/div[1]/div/div[2]/ul/li[2]/button", {timeout: 3000})
