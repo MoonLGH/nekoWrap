@@ -53,7 +53,7 @@ export class Client {
     if(url.length < 3){
       throw Error("Your url  need to be >3 length")
     }
-    return bypassOuo((await this.pupBrowser!.newPage()),url)
+    return bypassOuo((url))
   }
 
 
