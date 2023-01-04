@@ -36,7 +36,7 @@ export async function bypassMirrored(page:Page, url:string) {
     return arr
 }
 
-async function getLink(url:string){
+export async function getLink(url:string){
     let res = await axios.get("https://mirrored.to"+url)
 
     let $ = load(res.data)
