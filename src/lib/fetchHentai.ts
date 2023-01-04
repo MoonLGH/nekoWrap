@@ -28,6 +28,6 @@ export async function fetch(browser:Browser,ID:string) {
       title,date,link,id
     })
   })
-  obj["thumb"] = $("#content > div.animeinfos > div.imgdesc > img").attr("href")
+  obj["thumb"] = $("#content > div.animeinfos > div.imgdesc > img").attr("src")
   return (obj as HentaiObject)
 }
