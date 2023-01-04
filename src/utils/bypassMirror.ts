@@ -3,6 +3,8 @@ import { load } from "cheerio";
 import axios from "axios";
 import { Mirror } from "./interfaces";
 export async function bypassMirrored(page:Page, url:string) {
+    try{
+
     let id = url.split("/files/")[1].split("/")[0]
     let res = await axios.get(`https://www.mirrored.to/downlink/${id}`)
     let $ = load(res.data)
@@ -34,6 +36,9 @@ export async function bypassMirrored(page:Page, url:string) {
         }
     }
     return arr
+    } catch (e) {
+        console.log(`Error on ${url}`)
+    }
 }
 
 export async function getLink(url:string){
