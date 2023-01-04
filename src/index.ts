@@ -57,7 +57,7 @@ export class Client {
   }
 
 
-  async Mirror(url:string){
+  async bypassMirrored(url:string){
     this.checkInitialize();
     if(url.length < 3){
       throw Error("Your url need to be >3 length")

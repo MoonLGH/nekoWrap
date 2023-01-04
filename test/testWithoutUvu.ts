@@ -22,7 +22,8 @@ puppeteer.use(StealthPlugin());
         if(element.provider.includes("ouo")){
           let url = await client.Ouo(element.link)
           console.log(url)
-          const downloads = await client.Mirror(url!)
+          url = url+""
+          const downloads = await client.bypassMirrored(url!)
           console.log(`this downloads: ${downloads}`)
           let zs = downloads.find(ar => ar.host.toLowerCase().includes("zippy"))?.url
           console.log(`this zs ${zs}`)

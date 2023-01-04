@@ -3,12 +3,11 @@ import { load } from "cheerio";
 import axios from "axios";
 import { Mirror } from "./interfaces";
 export async function bypassMirrored(page:Page, url:string) {
-    url = url
     let id = url.split("/files/")[1].split("/")[0]
     let res = await axios.get(`https://www.mirrored.to/downlink/${id}`)
     let $ = load(res.data)
 
-    let redirect = $("body > div.container.dl-width > div:nth-child(3) > div > a").attr("href") ||$("body > div.container.dl-width > div:nth-child(5) > div > a").attr("href") 
+    let redirect = $("body > div.container.dl-width > div > div > a").attr("href")
     res = await axios.get(redirect!)
 
     let apiRequest = res.data.split('"GET", "')[1].split('",')[0]
@@ -22,6 +21,7 @@ export async function bypassMirrored(page:Page, url:string) {
         let url = $(el).find("td:nth-child(2) > a").attr("href")!
         let status = $(el).find("td:nth-child(4)").text()
         status = status.trim()
+        if(!url || url.startsWith("/mirstats.php")) return
         if(!host) return
         arr.push({host,url,status})
     })
