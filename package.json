@@ -6,7 +6,7 @@
   "unpkg": "dist/index.min.js",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
-  "types": "types/index.d.ts",
+  "types": "types/src/index.d.ts",
   "license": "MIT",
   "author": {
     "name": "TODO_YOUR_NAME",
