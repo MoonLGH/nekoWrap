@@ -21,6 +21,7 @@ export interface Mirror {
 }
 
 export interface HentaiObject {
+    thumb:string,
     japanese: string;
     jenis: string;
     episode: string;

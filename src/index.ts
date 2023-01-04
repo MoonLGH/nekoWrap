@@ -9,7 +9,6 @@ import { bypassOuo } from "./utils/bypassOuo";
 import { bypassMirrored } from "./utils/bypassMirror";
 import { downloadZippy, parse } from "./utils/DownloadZippy";
 import { DownloadOption } from "./utils/interfaces";
-import { ReleaseAnime } from "./lib/releaseAnime";
 export class Client {
   pup: PuppeteerExtra;
   pupBrowser?: Browser;
@@ -57,9 +56,6 @@ export class Client {
     return bypassOuo((await this.pupBrowser!.newPage()),url)
   }
 
-  async releaseAnime(){
-    return (await ReleaseAnime())
-  }
 
   async Mirror(url:string){
     this.checkInitialize();
