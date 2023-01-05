@@ -41,6 +41,9 @@ async function get(url:string):Promise<any> {
             if (err.response?.headers?.location) return err.response.headers.location;
         }
     } catch (err) {
+        if(typeof err !== "string"){
+            return err
+        }
         return (await get(url))
     }
 }
