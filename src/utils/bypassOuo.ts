@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { load } from "cheerio";
 import {Cookie, parse} from "set-cookie-parser"
 
@@ -41,10 +41,10 @@ async function get(url:string):Promise<any> {
             if (err.response?.headers?.location) return err.response.headers.location;
         }
     } catch (err) {
-        if(typeof err !== "string"){
-            return err
+        if((err as AxiosError).response!.status === 403){
+            return await get(url)
         }
-        return (await get(url))
+        return err
     }
 }
 function cookieString(co:Cookie[]) {
