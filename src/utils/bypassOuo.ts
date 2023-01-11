@@ -2,7 +2,13 @@ import axios, { AxiosError } from "axios";
 import { load } from "cheerio";
 import {Cookie, parse} from "set-cookie-parser"
 
-async function get(url:string):Promise<any> {
+async function get(url:string,i?:number):Promise<any> {
+    if(!i) {
+        i = 1
+    }
+    if(i > 3) {
+        return "ERROR"
+    }
     try {
         if (url.includes("/go/")) url = url.replace("/go/", "/");
         if (url.includes("/fbc/")) url = url.replace("/fbc/", "/");
@@ -41,8 +47,9 @@ async function get(url:string):Promise<any> {
             if (err.response?.headers?.location) return err.response.headers.location;
         }
     } catch (err) {
-        if((err as AxiosError).response!.status === 403){
-            return await get(url)
+        if((err as AxiosError).code === "ERR_BAD_REQUEST"){
+            i++
+            return await get(url,i)
         }
         return err
     }
