@@ -5,7 +5,7 @@ import { hentai } from "./lib/hentai";
 import { search } from "./lib/search";
 import { fetch } from "./lib/fetchHentai";
 import { fetchEps } from "./lib/fetchEpisode";
-import { bypassOuo } from "./utils/bypassOuo";
+import { bypassOuo, bypassOuo2 } from "./utils/bypassOuo";
 import { bypassMirrored } from "./utils/bypassMirror";
 import { downloadZippy, parse } from "./utils/DownloadZippy";
 import { DownloadOption } from "./utils/interfaces";
@@ -48,8 +48,11 @@ export class Client {
     return fetch(this.pupBrowser!,id)
   }
 
-  async Ouo(url:string){
+  async Ouo(url:string,method:number=1){
     this.checkInitialize();
+    if(method === 2){
+      return bypassOuo2((await this.pupBrowser!.newPage()),url)
+    }
     if(url.length < 3){
       throw Error("Your url  need to be >3 length")
     }

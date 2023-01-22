@@ -21,7 +21,9 @@ puppeteer.use(StealthPlugin());
         const element = eps[i];
         if(element.provider.includes("ouo")){
           let url = await client.Ouo(element.link)
-          console.log(url)
+          let url2 = await client.Ouo(element.link,2)
+          console.log("OUO"+url)
+          console.log("OUO2"+url2)
           url = url+""
           const downloads = await client.bypassMirrored(url!)
           console.log(`this downloads: ${downloads}`)
