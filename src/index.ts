@@ -1,6 +1,7 @@
 import {PuppeteerLaunchOptions, Browser} from "puppeteer";
 import {PuppeteerExtra} from "puppeteer-extra";
 import { Release } from "./lib/release";
+import { Genre } from "./lib/genre";
 import { hentai } from "./lib/hentai";
 import { search } from "./lib/search";
 import { fetch } from "./lib/fetchHentai";
@@ -9,6 +10,7 @@ import { bypassOuo, bypassOuo2 } from "./utils/bypassOuo";
 import { bypassMirrored } from "./utils/bypassMirror";
 import { downloadZippy, parse } from "./utils/DownloadZippy";
 import { DownloadOption } from "./utils/interfaces";
+import { genrelist } from "../src/utils/constants";
 export class Client {
   pup: PuppeteerExtra;
   pupBrowser?: Browser;
@@ -26,6 +28,17 @@ export class Client {
     this.checkInitialize();
     return Release(this.pupBrowser!,page);
   }
+
+  async genre(genre:string, page?:number) {
+    this.checkInitialize();
+    genre = genre.trim().toLowerCase();
+    const lowercaseGenrelist = genrelist.map(g => g.toLowerCase());
+    if (!lowercaseGenrelist.includes(genre)) {
+      throw Error("No Genre Found!");
+    }
+    return Genre(this.pupBrowser!, genre, page);
+  }
+
 
   async hentai(page?:number) {
     this.checkInitialize();
