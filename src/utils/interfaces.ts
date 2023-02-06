@@ -1,8 +1,11 @@
+import { genrelist } from "./constants";
 
 export interface Download {
     title:string,
     list:Provider[],
 }
+
+export type genrelistType = typeof genrelist[number]
 
 export interface DownloadOption {
     fileName:string

@@ -9,7 +9,7 @@ import { fetchEps } from "./lib/fetchEpisode";
 import { bypassOuo, bypassOuo2 } from "./utils/bypassOuo";
 import { bypassMirrored } from "./utils/bypassMirror";
 import { downloadZippy, parse } from "./utils/DownloadZippy";
-import { DownloadOption } from "./utils/interfaces";
+import { DownloadOption, genrelistType } from "./utils/interfaces";
 import { genrelist } from "../src/utils/constants";
 export class Client {
   pup: PuppeteerExtra;
@@ -29,12 +29,10 @@ export class Client {
     return Release(this.pupBrowser!,page);
   }
 
-  async genre(genre:string, page?:number) {
+  async genre(genre:genrelistType, page?:number) {
     this.checkInitialize();
-    genre = genre.trim().toLowerCase();
-    const lowercaseGenrelist = genrelist.map(g => g.toLowerCase());
-    if (!lowercaseGenrelist.includes(genre)) {
-      throw Error("No Genre Found!");
+    if(!genre || genre.length < 1) {
+      throw Error("Please input a string")
     }
     return Genre(this.pupBrowser!, genre, page);
   }

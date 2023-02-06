@@ -1,9 +1,15 @@
 import {Browser} from "puppeteer";
-import {baseUrl, endpoint} from "../utils/constants";
+import {baseUrl, endpoint, genrelist} from "../utils/constants";
 import { bypass } from "../utils/BypassCF";
 import { load } from "cheerio";
 import { AnimeShort } from "../utils/interfaces";
-export async function Genre(browser:Browser,genre:string='action',page:number=1) {
+
+export async function Genre(browser:Browser,genre:string,page:number=1) {
+  genre = genre.trim().toLowerCase();
+  const lowercaseGenrelist = genrelist.map(g => g.toLowerCase());
+  if (!lowercaseGenrelist.includes(genre)) {
+    throw Error("No Genre Found!");
+  }
   const data = await bypass((await browser.newPage()),baseUrl+endpoint.genre.replace("$GENRE",`${genre}`).replace("$PAGE",`${page}`))
   const $ = load(data.responseBody);
   let arr:AnimeShort[] = []

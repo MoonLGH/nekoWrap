@@ -9,10 +9,10 @@ puppeteer.use(StealthPlugin());
 (async ()=>{
   const client = new Client(puppeteer);
   await client.start();
-  let res = await client.genre("loli")
+  let res1 = await client.search("Isekai Harem Monogatari")
+  let res = await client.genre("yuri")
+  // console.log(res)
   console.log(res)
-
-  return
   for (let i = 0; i < res.length; i++) {
     const element = res[i];
     if(element.type ==="hentai"){
