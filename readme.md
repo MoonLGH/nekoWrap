@@ -1,10 +1,6 @@
 # NekoWrap
-
-Note : This project is based    
-
+ 
 Real Note : You fr can get ip banned from neko by using this, i'm not responsible for that
-
-another note for muslim user + indonesian : Dosa tanggung sendiri ya👍
 
 
 ## TODO
