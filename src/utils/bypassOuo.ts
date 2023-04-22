@@ -22,6 +22,7 @@ export async function bypassOuo2(page:Page, url:string) {
     return value
 }
 
+// this will throw error if ouo in your local machine is blocked by your ISP
 async function get(url:string,i?:number):Promise<any> {
     if(!i) {
         i = 1

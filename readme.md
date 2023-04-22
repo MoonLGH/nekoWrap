@@ -9,9 +9,10 @@ another note for muslim user + indonesian : Dosa tanggung sendiri ya👍
 
 ## TODO
 
-[] make seperate of zippy utiis so if zs scraper broke, we dont need patches
-[] Implement Genres <br>
-[] Add more examples <br ,>
+[ ] move to racaty
+[ ] implement api usage from [xct007/nekopoi-scraper](https://github.com/xct007/nekopoi-scraper)
+[ ] Implement Genres 
+[ ] Add more examples
 
 ## Install
 
@@ -106,26 +107,6 @@ async function Mirror() {
     const res = await client.Mirror("https://www.mirrored.to/files/4YPX8MZW/[NekoPoi]_Isekai_Harem_Monogatari_-_01_[720P][nekopoi.care].mp4_links")
     console.log(res)
     // Returns : Mirror[]
-}
-
-// ZippyShare Bypass
-async function parseZippy(){
-    let {link,name} = await client.parseZippy("https://www65.zippyshare.com/v/BLUflQh4/file.html")
-
-    console.log(link)
-    // Expected output : String
-
-    // Get Name File
-    console.log(name)
-
-    // Expected output : String
-}
-
-// Download Zippyshare
-async function downloadZippy(){
-    // Combine With parseZippy
-    const res = await client.downloadZippy(link, { fileName: name })
-    // Expected output : mp4
 }
 
 

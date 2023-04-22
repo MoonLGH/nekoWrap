@@ -29,11 +29,8 @@ puppeteer.use(StealthPlugin());
           url = url+""
           const downloads = await client.bypassMirrored(url!)
           console.log(`this downloads: ${downloads}`)
-          let zs = downloads.find(ar => ar.host.toLowerCase().includes("zippy"))?.url
-          console.log(`this zs ${zs}`)
-          if(!zs) return
-          let {link,name} = await client.parseZippy(zs!)
-          console.log(`this link : ${link} \nThis Name : ${name}`)
+          let racaty = downloads.find(ar => ar.host.toLowerCase().includes("racaty"))?.url
+          console.log(`this racaty ${racaty}`)
 
           const data = await client.downloadZippy(link,{fileName:name})
           // data.on("data",(chunk:Buffer)=>{
