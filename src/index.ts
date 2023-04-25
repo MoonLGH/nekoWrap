@@ -8,9 +8,8 @@ import { fetch } from "./lib/fetchHentai";
 import { fetchEps } from "./lib/fetchEpisode";
 import { bypassOuo, bypassOuo2 } from "./utils/bypassOuo";
 import { bypassMirrored } from "./utils/bypassMirror";
-import { DownloadOption, genrelistType } from "./utils/interfaces";
-import { genrelist } from "../src/utils/constants";
-export class Client {
+import { genrelistType } from "./utils/interfaces";
+export class PuppeteerClient {
   pup: PuppeteerExtra;
   pupBrowser?: Browser;
   opt: PuppeteerLaunchOptions;
@@ -99,4 +98,48 @@ export class Client {
   }
 }
 
-// export * from "./utils/interfaces";
+
+import {generateConfig} from "./utils/Axios";
+import {latest} from "./lib/AxiosLatest";
+import axios, {AxiosInstance} from "axios";
+export class NekoClient {
+  private _config: any;
+  private _ready: boolean = false;
+  client!: AxiosInstance;
+  constructor() {
+  }
+
+  async start() {
+    this._config = await generateConfig();
+    this._ready = true;
+    this.client = this.CreateClient();
+  }
+
+  get router() {
+    return this._config.route.first + "/" + this._config.route.second;
+  }
+
+  private CreateClient(){
+      let header = {
+        "token": this._config.Token,
+        "accept": this._config.axiosConfig.headers["accept"],
+        "appbuildcode": this._config.appBuildCode,
+        "appsignature": this._config.appSignature,
+        "accept-encoding": this._config.axiosConfig.headers["accept-encoding"],
+        "user-agent": this._config.axiosConfig.headers["user-agent"]
+      }
+
+      return axios.create({
+        baseURL: this._config.BASE_URL,
+        headers: header
+      })
+  }
+
+  async latest(){
+    if(!this._ready) throw Error("Client is not ready");
+    let { data } = await this.client.get(this.router+"/recent")
+    return latest(data);
+  }
+
+}
+

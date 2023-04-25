@@ -52,6 +52,13 @@ export interface AnimeShort {
     id:string,
     title:string
 }
+
+export interface ResultLatest {
+	id: number;
+	date: string;
+	image: string;
+	description: string;
+}
   
   
   
