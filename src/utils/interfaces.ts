@@ -60,5 +60,14 @@ export interface ResultLatest {
 	description: string;
 }
   
+
+export interface ResultSearch {
+	id: number;
+	date: string;
+	title: string;
+	image: string;
+	type: string;
+};
+
   
   

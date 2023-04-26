@@ -102,6 +102,7 @@ export class PuppeteerClient {
 import {generateConfig} from "./utils/Axios";
 import {latest} from "./lib/AxiosLatest";
 import axios, {AxiosInstance} from "axios";
+import { AxiosSearch } from "./lib/AxiosSearch";
 export class NekoClient {
   private _config: any;
   private _ready: boolean = false;
@@ -141,5 +142,11 @@ export class NekoClient {
     return latest(data);
   }
 
+  async search(query:string,page:number=1){
+    if(!this._ready) throw Error("Client is not ready");
+    if(query.length < 3) throw Error("Query need to be >3 length");
+    let { data } = await this.client.get(this.router+`/search?q=${query}&page=${page}`)
+    return AxiosSearch(data)
+  }
 }
 
