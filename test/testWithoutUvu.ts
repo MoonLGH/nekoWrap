@@ -43,5 +43,5 @@ puppeteer.use(StealthPlugin());
 (async () => {
     let client = new NekoClient();
     await client.start();
-    client.search("isekai").then(console.log)
+    client.release().then(console.log)
 })()

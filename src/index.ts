@@ -136,7 +136,7 @@ export class NekoClient {
       })
   }
 
-  async latest(){
+  async release(){
     if(!this._ready) throw Error("Client is not ready");
     let { data } = await this.client.get(this.router+"/recent")
     return latest(data);
